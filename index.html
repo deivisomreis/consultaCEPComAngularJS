@@ -1,46 +1,15 @@
 <!DOCTYPE html>
-<html ng-app="listaCEP">
+<html ng-app="CEP">
 <head>
 	<meta charset="UTF-8">
 	<title>Busca CEP</title>
 	<script src="bootstrap/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 	<script type="text/javascript" src="angular/angular.js"></script>
-	<script type="text/javascript">
-		var app  = angular.module("listaCEP", []);
-		app.controller("listaCEPCtrl", function($scope, $http){
-			// var cep = prompt("Informe um cep:");
-			$scope.app = "Lista Telefonica";
-			$scope.numberCEP = "";
-			$scope.resultSearcCEP;
-			$scope.functionConsultaCEP = function(){
-				$http.get("https://viacep.com.br/ws/" + $scope.numberCEP +"/json/")
-  				.then(function mySuccess(response) {
-    				$scope.resultSearcCEP =  response.data;
-			  }, function myError(response){
-				  alert("CEP não encontrado!");
-			  });
-			}
-			
-		})
-	</script>
-	<style>
-		.jumbotron{
-			width: 400px;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 20px;
-			text-align: center;
-		}
-		.container{
-			width: 400px;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 20px;
-		}
-	</style>
+	<script type="text/javascript"src="js/properties.js"></script>
+	<link rel="stylesheet" href="css/properties.css">
 </head>
-<body ng-controller="listaCEPCtrl">
+<body ng-controller="buscaCEP">
 	<div class="container ">
 		<h4 class="jumbotron">
 			{{app}}
@@ -51,12 +20,18 @@
 		</p>
 		<table class="table table-hover">
 			<tr>
-				<th>Nome</th>
-				<th>Telefone</th>
+				<th>CEP</th>
+				<th>Logradouro</th>
+				<th>bairro</th>
+				<th>Cidade</th>
+				<th>Estado</th>
 			</tr>
 			<tr>
-				<td>{{resultSearcCEP.cep}}</td>
-				<td>{{resultSearcCEP.logradouro}}</td>
+				<td>{{resultBuscaCEP.cep}}</td>
+				<td>{{resultBuscaCEP.logradouro}}</td>
+				<td>{{resultBuscaCEP.bairro}}</td>
+				<td>{{resultBuscaCEP.localidade}}</td>
+				<td>{{resultBuscaCEP.uf}}</td>
 			</tr>
 		</table>
 
